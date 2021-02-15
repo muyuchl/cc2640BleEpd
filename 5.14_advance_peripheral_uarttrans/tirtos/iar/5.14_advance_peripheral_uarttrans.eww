@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\app\cc2640r2lp_app.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\stack\cc2640r2lp_stack.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

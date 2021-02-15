@@ -1,0 +1,10 @@
+tirtos/iar/app/FlashROM_StackLibrary/
+tirtos/iar/app/settings/
+tirtos/iar/app/cc2640r2lp_app.dep
+tirtos/iar/config/ble_r2.symbols
+tirtos/iar/settings/
+tirtos/iar/stack/FlashROM_Library/
+tirtos/iar/stack/cc2640r2lp_stack.dep
+tirtos/iar/stack/settings/
+tirtos/iar/config/configPkg/
+tirtos/iar/config/src/

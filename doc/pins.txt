@@ -1,0 +1,17 @@
+note: some models don't have led
+RED LED             IOID_6      // low active
+GREEN LED           IOID_7
+BLUE LED            IOID_0
+
+epd_sda (MOSI)       IOID_19         
+epd CLK              IOID_18   
+
+ EPD_POWER_PIN         IOID_20       // low active
+
+ EPD_RST_PIN             IOID_10
+ EPD_DC_PIN              IOID_11
+ EPD_BUSY_PIN            IOID_9
+ EPD_CS_PIN              IOID_12
+ 
+ REED_PIN    IOID_13        // will read 0 if there is a magnet near
+ TEST_PIN    IOID_15        // on backe of pcb with name 'test'

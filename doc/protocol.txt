@@ -1,0 +1,5 @@
+a simple protocol is used to send image data to the device via BLE.
+
+* Android app send each frame contains one command with zero or frameLength bytes data
+* CC2640R2 will reply with the same command back, but no data payload (may add later)
+

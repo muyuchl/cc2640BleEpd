@@ -1,0 +1,34 @@
+## Usage
+* build cc2640r2 project and flash to the device
+* build Android app, and open it on phone
+* connect the the device with name like 'simple peripheral uarttrans'
+* use any tool you like to convert image to lcd data, (https://www.waveshare.net/w/upload/3/36/Image2Lcd.7z)
+* load black image bin file (2756 bytes, 104x212)
+* load red image bin file
+* click download, and wait the device to receive and update
+
+## Android App Dev
+This is the environment I developed:
+Android Studio 4.1.2
+Android SDK 11.0   (API 30)
+
+test device:
+Redmi Note3
+
+
+## cc2640r2 project Dev
+Iar 8.11  (it is recommended that no blank space in stall path)
+TI ble5 sdk: simplelink_cc2640r2_sdk_1_40_00_45
+
+* sdk is installed into default location: c/ti/simplelink_cc2640r2_sdk_1_40_00_45/
+* create a folder named 'CC2640R2_LAUNCHIOT' in sdk's example/rtos/
+* move whole folder to /c/ti/simplelink_cc2640r2_sdk_1_40_00_45/examples/rtos/CC2640R2_LAUNCHIOT/ble5stack/5.14_advance_peripheral_uarttrans
+* move 'target' folder to /c/ti/simplelink_cc2640r2_sdk_1_40_00_45/examples/rtos/CC2640R2_LAUNCHIOT/ble5stack
+
+You don't need to follow the above steps. If that happens, you need to adapt your project to your real case.
+The target folder contains pin configs for the device.
+
+
+
+## to improve
+* currently CC2640R2's low power consumption is not considered, so use with care on battery

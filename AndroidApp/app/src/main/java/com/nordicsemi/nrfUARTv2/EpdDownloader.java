@@ -40,6 +40,8 @@ public class EpdDownloader {
 
     public final static byte EPD_CMD_UPDATE_DISPLAY = 0x21;  // ask epd to show ram data
 
+    public final static byte EPD_CMD_READ_VERSION = 0x22;
+
     public EpdDownloader() {
         for (int i = 0; i < (WIDTH / 8 * HEIGHT) ; i++) {
             // fill with 0xff, (white color)

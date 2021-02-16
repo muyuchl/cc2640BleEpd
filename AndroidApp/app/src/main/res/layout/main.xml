@@ -142,6 +142,12 @@
                 android:layout_height="wrap_content"
                 android:text="Start Download" />
 
+            <TextView
+                android:id="@+id/textViewFwVer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fw ver" />
+
         </LinearLayout>
     </LinearLayout>
 

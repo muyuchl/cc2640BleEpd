@@ -27,6 +27,10 @@
 #include "hw_uart.h"
 
 #include "util.h"
+
+uint8_t VERSION_MAJOR = 0;
+uint8_t VERSION_MINOR = 2;
+
  
  
  enum {
@@ -43,6 +47,8 @@
    EPD_CMD_GET_RED_RAM_CRC = 0x20,
 
    EPD_CMD_UPDATE_DISPLAY = 0x21,  // ask epd to show ram data
+   
+   EPD_CMD_READ_VERSION = 0x22,
 
 };
  
@@ -186,6 +192,14 @@ void handle_cmd()
   
   
   switch(cmd) {
+    case EPD_CMD_READ_VERSION:
+    HWUART_Printf("read ver\r\n");
+    resp_fram_len  = 3;
+    epd_resp_frame[1] = VERSION_MAJOR;
+    epd_resp_frame[2] = VERSION_MINOR;
+    
+    break;
+    
   case EPD_CMD_PING:
     HWUART_Printf("ping\r\n");
     break;

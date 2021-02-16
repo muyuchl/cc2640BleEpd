@@ -122,9 +122,7 @@ void epd_hw_init()
 {
 
     HwUARTPrintf("setup epd gpio\r\n");
-   GPIOHandle = PIN_open(&GPIOState, GPIOTable);
-   
-     DEV_Digital_Write(EPD_POWER_PIN, 0);
+   GPIOHandle = PIN_open(&GPIOState, GPIOTable);      
 
      HwUARTPrintf("setup epd spi\r\n");
     
@@ -207,7 +205,10 @@ parameter:
 ******************************************************************************/
 void EPD_2IN13_Init()
 {
-
+    // power on
+  DEV_Digital_Write(EPD_POWER_PIN, 0);
+  DEV_Delay_ms(100);
+  
     EPD_2IN13_Reset();
 
   
@@ -355,4 +356,8 @@ void EPD_2IN13_Sleep(void)
     EPD_2IN13_SendCommand(0x10); //enter deep sleep
     EPD_2IN13_SendData(0x01);
     DEV_Delay_ms(100);
+    
+    // power off
+  DEV_Digital_Write(EPD_POWER_PIN, 1);
+  DEV_Delay_ms(100);
 }

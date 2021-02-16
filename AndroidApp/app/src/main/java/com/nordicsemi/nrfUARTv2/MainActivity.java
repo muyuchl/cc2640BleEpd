@@ -87,6 +87,7 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
     private Button btnBrowseRed;
     private Button btnStartDownload;
     private TextView textViewDownloadInfo;
+    private TextView textViewFwVer;
     EpdDownloader epdDownloader = new EpdDownloader();
 
 
@@ -110,6 +111,7 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
         service_init();
 
         textViewDownloadInfo = (TextView)findViewById(R.id.textView_downlload_info);
+        textViewFwVer = (TextView)findViewById(R.id.textViewFwVer);
      
        
         // Handler Disconnect & Connect button
@@ -193,9 +195,9 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
             public void onClick(View v) {
                 // suppose ble is connected
                 epdDownloader.start();
-                // send init command to MCU
+                // send readver command to MCU
                 byte[] value = new byte[1];
-                value[0] = EpdDownloader.EPD_CMD_INIT;
+                value[0] = EpdDownloader.EPD_CMD_READ_VERSION;
                 sendMcuRequest(value);
 
             }
@@ -516,6 +518,17 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
         byte[] buf;
 
         switch (frame[0]) {
+            case EpdDownloader.EPD_CMD_READ_VERSION:
+                Log.i(TAG, "handleMcuResponse got epd version");
+                if (frame.length >= 3) {
+                    String ver = "FwVer: " + frame[1] + "." + frame[2];
+                    textViewFwVer.setText(ver);
+                }
+
+                buf = new byte[1];
+                buf[0] = EpdDownloader.EPD_CMD_INIT;
+                sendMcuRequest(buf);
+                break;
             case EpdDownloader.EPD_CMD_INIT:
                 Log.i(TAG, "handleMcuResponse got epd init response, now send prepare");
                 buf = new byte[1];

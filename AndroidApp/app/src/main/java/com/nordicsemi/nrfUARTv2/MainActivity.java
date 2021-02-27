@@ -17,11 +17,13 @@
 package com.nordicsemi.nrfUARTv2;
 
 
-
-
+import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 import com.nordicsemi.nrfUARTv2.UartService;
@@ -39,6 +41,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -47,6 +52,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Gravity;
@@ -436,6 +442,12 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
                         Log.i(TAG, "open red file  " + uri.toString());
 
                         String filePath = uri.toString().replace("file://", "");
+
+                        if (filePath.startsWith("content://com.android.fileexplorer.myprovider/external_files")) {
+                           // filePath = getFilePathByUri(getApplicationContext(), uri);
+                            filePath = filePath.replace("content://com.android.fileexplorer.myprovider/external_files", "/storage/emulated/0");
+                        }
+
                         if (!epdDownloader.loadFile(filePath, false)) {
                             String err = epdDownloader.getErrString();
                             textViewDownloadInfo.setText(err);
@@ -614,5 +626,6 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
             e.printStackTrace();
         }
     }
+
 
 }

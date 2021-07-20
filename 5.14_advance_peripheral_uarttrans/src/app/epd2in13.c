@@ -13,7 +13,6 @@
  
 #include <ti/drivers/PIN.h>
 
-extern void Util_delay_ms(uint16_t t);
 
 #define BLUE_LED_PIN             IOID_0     // low active
 
@@ -70,6 +69,12 @@ const unsigned char EPD_2IN13_lut_full_update[]= {
     0x15,0x41,0xA8,0x32,0x30,0x0A,
 };
 
+// quick and dirty way
+// Task_sleep defined in <ti/sysbios/knl/Task.h>
+static void Util_delay_ms(uint16_t t)
+{  
+  Task_sleep( ((t) * 1000) / Clock_tickPeriod );
+}
 
 static void HwUARTPrintf(const char *str)
 {

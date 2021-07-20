@@ -4,6 +4,7 @@
 
 #include <ti/drivers/SPI.h>
 #include <ti/drivers/spi/SPICC26XXDMA.h>
+#include <ti/sysbios/knl/Task.h>
 
 #include "board.h"
 
